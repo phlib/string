@@ -1,7 +1,7 @@
 {
     "name": "phlib/string",
     "version": "1.0.0",
-    "description": "Config",
+    "description": "String functions like ellipsis",
     "authors": [
         {
             "name": "James Dempster"
