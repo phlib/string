@@ -1,53 +1,37 @@
 <?php
 
-namespace Phlib\Tests;
+declare(strict_types=1);
 
-use Phlib\String;
+namespace Phlib\String;
 
-class StringTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class StringTest extends TestCase
 {
-
-    public function testNoEllipsis()
+    public function testNoEllipsis(): void
     {
-        $this->assertSame('Hello world', String::ellipsis('Hello world', 100));
+        static::assertSame('Hello world', ellipsis('Hello world', 100));
     }
 
-    public function testDefaultEllipsis()
+    public function testDefaultEllipsis(): void
     {
-        $this->assertSame('Hello w...', String::ellipsis('Hello world', 10));
+        static::assertSame('Hello w...', ellipsis('Hello world', 10));
     }
 
-    public function testCustomEllipsis()
+    public function testCustomEllipsis(): void
     {
-        $this->assertSame('Hello w,,,', String::ellipsis('Hello world', 10, ',,,'));
+        static::assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
     }
 
-    public function testCustomEllipsisDifferentLength()
+    public function testCustomEllipsisDifferentLength(): void
     {
-        $this->assertSame('Hello ;;;;', String::ellipsis('Hello world', 10, ';;;;'));
+        static::assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidLengthZero()
+    public function testInvalidLengthZero(): void
     {
-        String::ellipsis('Hello world', 0);
-    }
+        $this->expectException(\InvalidArgumentException::class);
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidLengthWord()
-    {
-        String::ellipsis('Hello world', 'oops');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidLengthTooBig()
-    {
-        String::ellipsis('Hello world', PHP_INT_MAX + 1);
+        ellipsis('Hello world', 0);
     }
 }
