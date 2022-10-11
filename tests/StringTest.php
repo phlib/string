@@ -1,30 +1,28 @@
 <?php
 
-namespace Phlib\Tests;
-
-use Phlib\String;
+namespace Phlib\String;
 
 class StringTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testNoEllipsis()
     {
-        $this->assertSame('Hello world', String::ellipsis('Hello world', 100));
+        $this->assertSame('Hello world', ellipsis('Hello world', 100));
     }
 
     public function testDefaultEllipsis()
     {
-        $this->assertSame('Hello w...', String::ellipsis('Hello world', 10));
+        $this->assertSame('Hello w...', ellipsis('Hello world', 10));
     }
 
     public function testCustomEllipsis()
     {
-        $this->assertSame('Hello w,,,', String::ellipsis('Hello world', 10, ',,,'));
+        $this->assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
     }
 
     public function testCustomEllipsisDifferentLength()
     {
-        $this->assertSame('Hello ;;;;', String::ellipsis('Hello world', 10, ';;;;'));
+        $this->assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
     }
 
     /**
@@ -32,7 +30,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidLengthZero()
     {
-        String::ellipsis('Hello world', 0);
+        ellipsis('Hello world', 0);
     }
 
     /**
@@ -40,7 +38,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidLengthWord()
     {
-        String::ellipsis('Hello world', 'oops');
+        ellipsis('Hello world', 'oops');
     }
 
     /**
@@ -48,6 +46,6 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidLengthTooBig()
     {
-        String::ellipsis('Hello world', PHP_INT_MAX + 1);
+        ellipsis('Hello world', PHP_INT_MAX + 1);
     }
 }
