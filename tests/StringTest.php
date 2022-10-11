@@ -2,30 +2,32 @@
 
 namespace Phlib\String;
 
-class StringTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class StringTest extends TestCase
 {
     public function testNoEllipsis()
     {
-        $this->assertSame('Hello world', ellipsis('Hello world', 100));
+        static::assertSame('Hello world', ellipsis('Hello world', 100));
     }
 
     public function testDefaultEllipsis()
     {
-        $this->assertSame('Hello w...', ellipsis('Hello world', 10));
+        static::assertSame('Hello w...', ellipsis('Hello world', 10));
     }
 
     public function testCustomEllipsis()
     {
-        $this->assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
+        static::assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
     }
 
     public function testCustomEllipsisDifferentLength()
     {
-        $this->assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
+        static::assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidLengthZero()
     {
@@ -33,7 +35,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidLengthWord()
     {
@@ -41,7 +43,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidLengthTooBig()
     {
