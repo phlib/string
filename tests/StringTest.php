@@ -26,27 +26,24 @@ class StringTest extends TestCase
         static::assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testInvalidLengthZero()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         ellipsis('Hello world', 0);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testInvalidLengthWord()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         ellipsis('Hello world', 'oops');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testInvalidLengthTooBig()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         ellipsis('Hello world', PHP_INT_MAX + 1);
     }
 }
