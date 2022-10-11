@@ -4,7 +4,6 @@ namespace Phlib\String;
 
 class StringTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testNoEllipsis()
     {
         $this->assertSame('Hello world', ellipsis('Hello world', 100));
