@@ -6,9 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/phlib/string.svg)](https://packagist.org/packages/phlib/string)
 ![Licence](https://img.shields.io/github/license/phlib/string.svg)
 
-## Abandoned
-
-This package is abandoned and no longer supported.
+String functions, like ellipsis.
 
 ## License
 
