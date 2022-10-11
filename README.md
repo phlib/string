@@ -1,9 +1,9 @@
 # phlib/string
 
-[![Build Status](https://img.shields.io/travis/phlib/string/master.svg)](https://travis-ci.org/phlib/string)
-[![Codecov](https://img.shields.io/codecov/c/github/phlib/string.svg)](https://codecov.io/gh/phlib/string)
-[![Latest Stable Version](https://img.shields.io/packagist/v/phlib/string.svg)](https://packagist.org/packages/phlib/string)
-[![Total Downloads](https://img.shields.io/packagist/dt/phlib/string.svg)](https://packagist.org/packages/phlib/string)
+[![Code Checks](https://img.shields.io/github/workflow/status/phlib/string/CodeChecks?logo=github)](https://github.com/phlib/string/actions/workflows/code-checks.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/phlib/string.svg?logo=codecov)](https://codecov.io/gh/phlib/string)
+[![Latest Stable Version](https://img.shields.io/packagist/v/phlib/string.svg?logo=packagist)](https://packagist.org/packages/phlib/string)
+[![Total Downloads](https://img.shields.io/packagist/dt/phlib/string.svg?logo=packagist)](https://packagist.org/packages/phlib/string)
 ![Licence](https://img.shields.io/github/license/phlib/string.svg)
 
 String functions, like ellipsis.
