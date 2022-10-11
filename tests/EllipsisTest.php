@@ -6,7 +6,7 @@ namespace Phlib\String;
 
 use PHPUnit\Framework\TestCase;
 
-class StringTest extends TestCase
+class EllipsisTest extends TestCase
 {
     public function testNoEllipsis(): void
     {
