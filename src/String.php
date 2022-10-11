@@ -1,14 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Phlib\String;
 
-/**
- * @param string $string
- * @param int $maxLength
- * @param string $ellipsis
- * @return string
- */
-function ellipsis($string, $maxLength, $ellipsis = '...')
+function ellipsis(string $string, int $maxLength, string $ellipsis = '...'): string
 {
     $options = [
         'options' => [
