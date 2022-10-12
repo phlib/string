@@ -8,30 +8,100 @@ use PHPUnit\Framework\TestCase;
 
 class EllipsisTest extends TestCase
 {
-    public function testNoEllipsis(): void
+    /**
+     * @dataProvider dataEllipsis
+     */
+    public function testEllipsis(string $input, int $maxLength, ?string $ellipsis, string $expected): void
     {
-        static::assertSame('Hello world', ellipsis('Hello world', 100));
+        if ($ellipsis === null) {
+            $actual = ellipsis($input, $maxLength);
+        } else {
+            $actual = ellipsis($input, $maxLength, $ellipsis);
+        }
+        static::assertSame($expected, $actual);
     }
 
-    public function testDefaultEllipsis(): void
+    public function dataEllipsis(): array
     {
-        static::assertSame('Hello w...', ellipsis('Hello world', 10));
+        return [
+            'none' => [
+                'input' => 'Hello world',
+                'max' => 100,
+                'ellipsis' => null,
+                'expected' => 'Hello world',
+            ],
+            'default' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => null,
+                'expected' => 'Hello w...',
+            ],
+            'short' => [
+                'input' => 'Hello world',
+                'max' => 4,
+                'ellipsis' => null,
+                'expected' => 'H...',
+            ],
+            'custom' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => ',,,',
+                'expected' => 'Hello w,,,',
+            ],
+            'custom length' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => ';;;;',
+                'expected' => 'Hello ;;;;',
+            ],
+            'mbstring input' => [
+                // Robot is 4-byte character, https://www.fileformat.info/info/unicode/char/1f916/index.htm
+                // Without multibyte support, robot will be broken after 3 bytes
+                'input' => 'Hello 🤖 world',
+                'max' => 12,
+                'ellipsis' => null,
+                'expected' => 'Hello 🤖 w...',
+            ],
+            'mbstring ellipsis' => [
+                // Without multibyte support, ellipsis length would be counted as 12
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => '🤖🤖🤖',
+                'expected' => 'Hello w🤖🤖🤖',
+            ],
+        ];
     }
 
-    public function testCustomEllipsis(): void
-    {
-        static::assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
-    }
-
-    public function testCustomEllipsisDifferentLength(): void
-    {
-        static::assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
-    }
-
-    public function testInvalidLengthZero(): void
+    /**
+     * @dataProvider dataInvalidMaxLength
+     */
+    public function testInvalidMaxLength(int $maxLength, ?string $ellipsis): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot use value provided as maxlength');
 
-        ellipsis('Hello world', 0);
+        if ($ellipsis === null) {
+            ellipsis('Hello world', $maxLength);
+        } else {
+            ellipsis('Hello world', $maxLength, $ellipsis);
+        }
+    }
+
+    public function dataInvalidMaxLength(): array
+    {
+        return [
+            'zero' => [
+                'max' => 0,
+                'ellipsis' => null,
+            ],
+            'short' => [
+                'max' => 3,
+                'ellipsis' => null,
+            ],
+            'short custom' => [
+                'max' => 4,
+                'ellipsis' => ';;;;',
+            ],
+        ];
     }
 }
