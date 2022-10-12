@@ -8,24 +8,47 @@ use PHPUnit\Framework\TestCase;
 
 class StringTest extends TestCase
 {
-    public function testNoEllipsis(): void
+    /**
+     * @dataProvider dataEllipsis
+     */
+    public function testEllipsis(string $input, int $maxLength, ?string $ellipsis, string $expected): void
     {
-        static::assertSame('Hello world', ellipsis('Hello world', 100));
+        if ($ellipsis === null) {
+            $actual = ellipsis($input, $maxLength);
+        } else {
+            $actual = ellipsis($input, $maxLength, $ellipsis);
+        }
+        static::assertSame($expected, $actual);
     }
 
-    public function testDefaultEllipsis(): void
+    public function dataEllipsis(): array
     {
-        static::assertSame('Hello w...', ellipsis('Hello world', 10));
-    }
-
-    public function testCustomEllipsis(): void
-    {
-        static::assertSame('Hello w,,,', ellipsis('Hello world', 10, ',,,'));
-    }
-
-    public function testCustomEllipsisDifferentLength(): void
-    {
-        static::assertSame('Hello ;;;;', ellipsis('Hello world', 10, ';;;;'));
+        return [
+            'none' => [
+                'input' => 'Hello world',
+                'max' => 100,
+                'ellipsis' => null,
+                'expected' => 'Hello world',
+            ],
+            'default' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => null,
+                'expected' => 'Hello w...',
+            ],
+            'custom' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => ',,,',
+                'expected' => 'Hello w,,,',
+            ],
+            'custom length' => [
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => ';;;;',
+                'expected' => 'Hello ;;;;',
+            ],
+        ];
     }
 
     public function testInvalidLengthZero(): void
