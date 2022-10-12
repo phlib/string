@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Support PHP v7.4 and v8.
 - Multibyte support for ellipsis function.
+- New function to convert stringly booleans to bool.
 ### Changed
 - **BC break**: Use namespaced functions, i.e. `\Phlib\String\ellipsis()`.
 - Throw exception if ellipsis function maxLength is too short for ellipsis.
