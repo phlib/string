@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Multibyte support for ellipsis function.
 ### Changed
 - **BC break**: Use namespaced functions, i.e. `\Phlib\String\ellipsis()`.
+- Throw exception if ellipsis function maxLength is too short for ellipsis.
 ### Removed
 - **BC break**: Removed support for PHP versions <= 7.3 as they are no longer
   [actively supported](https://php.net/supported-versions.php)

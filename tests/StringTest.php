@@ -36,6 +36,12 @@ class StringTest extends TestCase
                 'ellipsis' => null,
                 'expected' => 'Hello w...',
             ],
+            'short' => [
+                'input' => 'Hello world',
+                'max' => 4,
+                'ellipsis' => null,
+                'expected' => 'H...',
+            ],
             'custom' => [
                 'input' => 'Hello world',
                 'max' => 10,
@@ -66,10 +72,36 @@ class StringTest extends TestCase
         ];
     }
 
-    public function testInvalidLengthZero(): void
+    /**
+     * @dataProvider dataInvalidMaxLength
+     */
+    public function testInvalidMaxLength(int $maxLength, ?string $ellipsis): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot use value provided as maxlength');
 
-        ellipsis('Hello world', 0);
+        if ($ellipsis === null) {
+            ellipsis('Hello world', $maxLength);
+        } else {
+            ellipsis('Hello world', $maxLength, $ellipsis);
+        }
+    }
+
+    public function dataInvalidMaxLength(): array
+    {
+        return [
+            'zero' => [
+                'max' => 0,
+                'ellipsis' => null,
+            ],
+            'short' => [
+                'max' => 3,
+                'ellipsis' => null,
+            ],
+            'short custom' => [
+                'max' => 4,
+                'ellipsis' => ';;;;',
+            ],
+        ];
     }
 }
