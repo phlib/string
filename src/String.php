@@ -17,8 +17,8 @@ function ellipsis(string $string, int $maxLength, string $ellipsis = '...'): str
         throw new \InvalidArgumentException("Cannot use value provided as maxlength '{$maxLength}'");
     }
 
-    if (strlen($string) > $maxLength) {
-        return substr($string, 0, $maxLength - strlen($ellipsis)) . $ellipsis;
+    if (mb_strlen($string) > $maxLength) {
+        return mb_substr($string, 0, $maxLength - mb_strlen($ellipsis)) . $ellipsis;
     }
     return $string;
 }

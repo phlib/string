@@ -48,6 +48,21 @@ class StringTest extends TestCase
                 'ellipsis' => ';;;;',
                 'expected' => 'Hello ;;;;',
             ],
+            'mbstring input' => [
+                // Robot is 4-byte character, https://www.fileformat.info/info/unicode/char/1f916/index.htm
+                // Without multibyte support, robot will be broken after 3 bytes
+                'input' => 'Hello 🤖 world',
+                'max' => 12,
+                'ellipsis' => null,
+                'expected' => 'Hello 🤖 w...',
+            ],
+            'mbstring ellipsis' => [
+                // Without multibyte support, ellipsis length would be counted as 12
+                'input' => 'Hello world',
+                'max' => 10,
+                'ellipsis' => '🤖🤖🤖',
+                'expected' => 'Hello w🤖🤖🤖',
+            ],
         ];
     }
 

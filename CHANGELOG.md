@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Support PHP v7.4 and v8.
+- Multibyte support for ellipsis function.
 ### Changed
 - **BC break**: Use namespaced functions, i.e. `\Phlib\String\ellipsis()`.
 ### Removed
