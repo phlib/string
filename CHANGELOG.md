@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.0] - 2022-10-12
 ### Added
 - Support PHP v7.4 and v8.
 - Multibyte support for ellipsis function.

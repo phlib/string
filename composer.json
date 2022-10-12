@@ -1,6 +1,5 @@
 {
     "name": "phlib/string",
-    "version": "1.0.0",
     "description": "String functions like ellipsis",
     "license": "LGPL-3.0",
     "authors": [
