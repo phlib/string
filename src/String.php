@@ -22,3 +22,24 @@ function ellipsis(string $string, int $maxLength, string $ellipsis = '...'): str
     }
     return $string;
 }
+
+function toBoolean(string $value)
+{
+    $bools = [
+        'yes' => true,
+        'no' => false,
+        'y' => true,
+        'n' => false,
+        'true' => true,
+        'false' => false,
+        '1' => true,
+        '0' => false,
+    ];
+
+    $value = strtolower(trim($value));
+    if (array_key_exists($value, $bools)) {
+        return $bools[$value];
+    }
+
+    return (bool)$value;
+}
