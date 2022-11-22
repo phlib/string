@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phlib\String;
 
-function ellipsis(string $string, int $maxLength, string $ellipsis = '...'): string
+function ellipsis(string $string, int $maxLength, string $ellipsis = '...', string $breakAt = null): string
 {
     $ellipsisLength = mb_strlen($ellipsis);
     $options = [
@@ -19,7 +19,14 @@ function ellipsis(string $string, int $maxLength, string $ellipsis = '...'): str
     }
 
     if (mb_strlen($string) > $maxLength) {
-        return mb_substr($string, 0, $maxLength - $ellipsisLength) . $ellipsis;
+        $str = mb_substr($string, 0, $maxLength - $ellipsisLength);
+        if ($breakAt !== null) {
+            $lastBreakPos = mb_strrpos($str, $breakAt);
+            if ($lastBreakPos > 0) {
+                $str = mb_substr($str, 0, $lastBreakPos);
+            }
+        }
+        return $str . $ellipsis;
     }
     return $string;
 }
