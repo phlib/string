@@ -31,7 +31,7 @@ function ellipsis(string $string, int $maxLength, string $ellipsis = '...', stri
     return $string;
 }
 
-function toBoolean(string $value)
+function toBoolean(string $value): bool
 {
     $bools = [
         'yes' => true,
