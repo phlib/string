@@ -1,6 +1,6 @@
 # phlib/string
 
-[![Code Checks](https://img.shields.io/github/workflow/status/phlib/string/CodeChecks?logo=github)](https://github.com/phlib/string/actions/workflows/code-checks.yml)
+[![Code Checks](https://img.shields.io/github/actions/workflow/status/phlib/string/code-checks.yml?logo=github)](https://github.com/phlib/string/actions/workflows/code-checks.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/phlib/string.svg?logo=codecov)](https://codecov.io/gh/phlib/string)
 [![Latest Stable Version](https://img.shields.io/packagist/v/phlib/string.svg?logo=packagist)](https://packagist.org/packages/phlib/string)
 [![Total Downloads](https://img.shields.io/packagist/dt/phlib/string.svg?logo=packagist)](https://packagist.org/packages/phlib/string)
